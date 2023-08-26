@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "lvgl.h": "c",
+        "espnow_module.h": "c",
+        "esp_now.h": "c",
+        "lv_demo_music.h": "c",
+        "esp_netif.h": "c"
+    }
+}
