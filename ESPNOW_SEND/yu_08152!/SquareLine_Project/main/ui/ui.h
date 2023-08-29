@@ -20,15 +20,14 @@ extern "C" {
 void ui_Screen1_screen_init(void);
 extern lv_obj_t * ui_Screen1;
 extern lv_obj_t * ui_Panel2;
-//
-//void ui_event_Panel2_Button1(lv_event_t * e);
-extern lv_obj_t * ui_Label1;
-//void ui_event_Panel2_Button2(lv_event_t * e);
-extern lv_obj_t * ui_Label3;
-//void ui_event_Panel2_Button4(lv_event_t * e);
-extern lv_obj_t * ui_Label4;
-//
 extern lv_obj_t * ui____initial_actions0;
+
+LV_IMG_DECLARE(ui_img_left1_png);    // assets\left1.png
+LV_IMG_DECLARE(ui_img_left2_png);    // assets\left2.png
+LV_IMG_DECLARE(ui_img_right2_png);    // assets\right2.png
+LV_IMG_DECLARE(ui_img_yu_bg_01_png);    // assets\yu_bg_01.png
+LV_IMG_DECLARE(ui_img_yu_logo1_png);    // assets\yu_logo1.png
+LV_IMG_DECLARE(ui_img_yu_logo2_png);    // assets\yu_logo2.png
 
 void ui_init(void);
 

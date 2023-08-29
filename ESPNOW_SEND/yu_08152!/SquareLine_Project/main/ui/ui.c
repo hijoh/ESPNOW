@@ -12,15 +12,11 @@
 void ui_Screen1_screen_init(void);
 lv_obj_t * ui_Screen1;
 lv_obj_t * ui_Panel2;
-//
-//void ui_event_Panel2_Button1(lv_event_t * e);
-lv_obj_t * ui_Label1;
-//void ui_event_Panel2_Button2(lv_event_t * e);
-lv_obj_t * ui_Label2;
-//void ui_event_Panel2_Button4(lv_event_t * e);
-lv_obj_t * ui_Label4;
-//
 lv_obj_t * ui____initial_actions0;
+const lv_img_dsc_t * ui_imgset_left[2] = {&ui_img_left1_png, &ui_img_left2_png};
+const lv_img_dsc_t * ui_imgset_right[1] = {&ui_img_right2_png};
+const lv_img_dsc_t * ui_imgset_yu_bg_[1] = {&ui_img_yu_bg_01_png};
+const lv_img_dsc_t * ui_imgset_yu_logo[2] = {&ui_img_yu_logo1_png, &ui_img_yu_logo2_png};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
@@ -33,30 +29,7 @@ lv_obj_t * ui____initial_actions0;
 ///////////////////// ANIMATIONS ////////////////////
 
 ///////////////////// FUNCTIONS ////////////////////
-// void ui_event_Panel2_Button1(lv_event_t * e)
-// {
-//     lv_event_code_t event_code = lv_event_get_code(e);
-//     lv_obj_t * target = lv_event_get_target(e);
-//     if(event_code == LV_EVENT_CLICKED) {
-//         _ui_checked_set_text_value(ui_Label1, target, "ON	", "OFF");
-//     }
-// }
-// void ui_event_Panel2_Button2(lv_event_t * e)
-// {
-//     lv_event_code_t event_code = lv_event_get_code(e);
-//     lv_obj_t * target = lv_event_get_target(e);
-//     if(event_code == LV_EVENT_CLICKED) {
-//         _ui_checked_set_text_value(ui_Label3, target, "ON", "OFF");
-//     }
-// }
-// void ui_event_Panel2_Button4(lv_event_t * e)
-// {
-//     lv_event_code_t event_code = lv_event_get_code(e);
-//     lv_obj_t * target = lv_event_get_target(e);
-//     if(event_code == LV_EVENT_CLICKED) {
-//         _ui_checked_set_text_value(ui_Label4, target, "ON", "OFF");
-//     }
-// }
+
 ///////////////////// SCREENS ////////////////////
 
 void ui_init(void)
