@@ -141,8 +141,7 @@ typedef enum
 } MessageMode;
 
 MessageMode current_modes[NUM_MODES] = {
-    MODE_A1, MODE_B1, MODE_C1
-};
+    MODE_A1, MODE_B1, MODE_C1};
 
 int message_counters[NUM_MODES] = {0};
 
@@ -165,9 +164,11 @@ static void button_event_cb(lv_event_t *event, MessageMode mode, const char *mes
     }
 }
 
-static void button4_event_cb(lv_event_t *event)
+
+
+static void button1_event_cb(lv_event_t *event)
 {
-    button_event_cb(event, MODE_A1, "A1", "A2");
+    button_event_cb(event, MODE_C1, "C1", "C2");
 }
 
 static void button2_event_cb(lv_event_t *event)
@@ -175,13 +176,49 @@ static void button2_event_cb(lv_event_t *event)
     button_event_cb(event, MODE_B1, "B1", "B2");
 }
 
-static void button1_event_cb(lv_event_t *event)
+
+static void button4_event_cb(lv_event_t *event)
 {
-    button_event_cb(event, MODE_C1, "C1", "C2");
+    button_event_cb(event, MODE_A1, "A1", "A2");
 }
 
 
 
+
+void ui_event_comp_Panel2_Button1(lv_event_t *e, lv_obj_t *cui_Button1, lv_obj_t **children)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t *target = lv_event_get_target(e);
+    
+    if (event_code == LV_EVENT_CLICKED)
+    {
+        _ui_checked_set_text_value(children[UI_COMP_PANEL2_BUTTON1_LABEL1], target, "ON", "OFF");
+    }
+}
+/*
+void ui_event_comp_Panel2_Button2(lv_event_t *e,lv_obj_t *cui_Button2, lv_obj_t **children)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t *target = lv_event_get_target(e);
+    if (event_code == LV_EVENT_CLICKED)
+    {
+        lv_obj_add_event_cb(cui_Button2, ui_event_comp_Panel2_Button2, LV_EVENT_CLICKED, children);
+        _ui_checked_set_text_value(children[UI_COMP_PANEL2_BUTTON2_LABEL3], target, "ON", "OFF");
+    }
+}
+
+void ui_event_comp_Panel2_Button4(lv_event_t *e,lv_obj_t *cui_Button4, lv_obj_t **children)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t *target = lv_event_get_target(e);
+    
+    if (event_code == LV_EVENT_CLICKED)
+    {
+        lv_obj_add_event_cb(cui_Button4, ui_event_comp_Panel2_Button4, LV_EVENT_CLICKED, children);
+        _ui_checked_set_text_value(children[UI_COMP_PANEL2_BUTTON4_LABEL4], target, "ON", "OFF");
+    }
+}
+*/
 void ui_event_comp_Panel2_Arc2(lv_event_t *e) // arc回调函数
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -192,6 +229,8 @@ void ui_event_comp_Panel2_Arc2(lv_event_t *e) // arc回调函数
         _ui_arc_set_text_value(comp_Panel2[UI_COMP_PANEL2_ARC2_LABEL2], target, "", "%");
     }
 }
+
+
 // COMPONENT Panel2
 
 lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
@@ -213,7 +252,15 @@ lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
     lv_obj_set_align(cui_Button1, LV_ALIGN_CENTER);
     lv_obj_add_flag(cui_Button1, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS); /// Flags
     lv_obj_clear_flag(cui_Button1, LV_OBJ_FLAG_SCROLLABLE);                            /// Flags
-    lv_obj_add_event_cb(cui_Button1, button1_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+
+    lv_obj_t *cui_Label1;
+    cui_Label1 = lv_label_create(cui_Button1);
+    lv_obj_set_width(cui_Label1, LV_SIZE_CONTENT);  /// 1
+    lv_obj_set_height(cui_Label1, LV_SIZE_CONTENT); /// 1
+    lv_obj_set_align(cui_Label1, LV_ALIGN_CENTER);
+    lv_label_set_text(cui_Label1, "OFF");
+
+     
 
     lv_obj_t *cui_Button2;
     cui_Button2 = lv_btn_create(cui_Panel2);
@@ -224,7 +271,15 @@ lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
     lv_obj_set_align(cui_Button2, LV_ALIGN_CENTER);
     lv_obj_add_flag(cui_Button2, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS); /// Flags
     lv_obj_clear_flag(cui_Button2, LV_OBJ_FLAG_SCROLLABLE);                            /// Flags
-    lv_obj_add_event_cb(cui_Button2, button2_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+
+    lv_obj_t *cui_Label3;
+    cui_Label3 = lv_label_create(cui_Button2);
+    lv_obj_set_width(cui_Label3, LV_SIZE_CONTENT);  /// 1
+    lv_obj_set_height(cui_Label3, LV_SIZE_CONTENT); /// 1
+    lv_obj_set_align(cui_Label3, LV_ALIGN_CENTER);
+    lv_label_set_text(cui_Label3, "OFF");
+
+    
 
     lv_obj_t *cui_Button4;
     cui_Button4 = lv_btn_create(cui_Panel2);
@@ -235,7 +290,15 @@ lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
     lv_obj_set_align(cui_Button4, LV_ALIGN_CENTER);
     lv_obj_add_flag(cui_Button4, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS); /// Flags
     lv_obj_clear_flag(cui_Button4, LV_OBJ_FLAG_SCROLLABLE);                            /// Flags
-    lv_obj_add_event_cb(cui_Button4, button4_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+
+    lv_obj_t *cui_Label4;
+    cui_Label4 = lv_label_create(cui_Button4);
+    lv_obj_set_width(cui_Label4, LV_SIZE_CONTENT);  /// 1
+    lv_obj_set_height(cui_Label4, LV_SIZE_CONTENT); /// 1
+    lv_obj_set_align(cui_Label4, LV_ALIGN_CENTER);
+    lv_label_set_text(cui_Label4, "OFF");
+
+   
 
     lv_obj_t *cui_Arc2;
     cui_Arc2 = lv_arc_create(cui_Panel2);
@@ -255,13 +318,29 @@ lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
     lv_obj_t **children = lv_mem_alloc(sizeof(lv_obj_t *) * _UI_COMP_PANEL2_NUM);
     children[UI_COMP_PANEL2_PANEL2] = cui_Panel2;
     children[UI_COMP_PANEL2_BUTTON1] = cui_Button1;
+    children[UI_COMP_PANEL2_BUTTON1_LABEL1] = cui_Label1;
     children[UI_COMP_PANEL2_BUTTON2] = cui_Button2;
+    children[UI_COMP_PANEL2_BUTTON2_LABEL3] = cui_Label3;
     children[UI_COMP_PANEL2_BUTTON4] = cui_Button4;
+    children[UI_COMP_PANEL2_BUTTON4_LABEL4] = cui_Label4;
     children[UI_COMP_PANEL2_ARC2] = cui_Arc2;
     children[UI_COMP_PANEL2_ARC2_LABEL2] = cui_Label2;
     lv_obj_add_event_cb(cui_Panel2, get_component_child_event_cb, LV_EVENT_GET_COMP_CHILD, children);
     lv_obj_add_event_cb(cui_Panel2, del_component_child_event_cb, LV_EVENT_DELETE, children);
+
     lv_obj_add_event_cb(cui_Arc2, ui_event_comp_Panel2_Arc2, LV_EVENT_ALL, children);
+
+    lv_obj_add_event_cb(cui_Button1, ui_event_comp_Panel2_Button1, LV_EVENT_CLICKED, children);
+    //lv_obj_add_event_cb(cui_Button2, ui_event_comp_Panel2_Button2, LV_EVENT_CLICKED, children);
+    //lv_obj_add_event_cb(cui_Button4, ui_event_comp_Panel2_Button4, LV_EVENT_CLICKED, children);
+
     ui_comp_Panel2_create_hook(cui_Panel2);
     return cui_Panel2;
 }
+/*
+lv_obj_add_event_cb(cui_Panel2, del_component_child_event_cb, LV_EVENT_DELETE, children);
+static void del_component_child_event_cb(lv_event_t *e) {
+    lv_obj_t **children = lv_event_get_user_data(e);
+    lv_mem_free(children);
+}
+*/
