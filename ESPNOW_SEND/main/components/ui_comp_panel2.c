@@ -28,107 +28,8 @@ static const char *TAG = "Button1_Callback";
 
 // static const char *TAG = "Panel2";
 // static uint8_t target_mac[ESP_NOW_ETH_ALEN] = {0x7C, 0xDF, 0xA1, 0xB8, 0xBE, 0xFC};
-/*
-static void button4_event_cb(lv_event_t *event)
-{
-    if (event->code == LV_EVENT_VALUE_CHANGED) {
-        ESP_LOGI(TAG, "Button 3 value changed");
-
-        // 在这里执行其他操作或触发其他事件
-
-        // 在按钮值改变时发送ESP-NOW消息
-        char send_buf[] = "A1";
-        if (esp_now_send(target_mac, (uint8_t *)send_buf, sizeof(send_buf)) != ESP_OK)
-        {
-            ESP_LOGE(TAG, "Send error");
-        }
-    }
-}
-
-static void button2_event_cb(lv_event_t *event)
-{
-    if (event->code == LV_EVENT_VALUE_CHANGED)
-    {
-        ESP_LOGI(TAG, "Button 2 value changed");
-        // 在这里执行其他操作或触发其他事件
-                // 在按钮值改变时发送ESP-NOW消息
-        char send_buf[] = "B1";
-        if (esp_now_send(target_mac, (uint8_t *)send_buf, sizeof(send_buf)) != ESP_OK)
-        {
-            ESP_LOGE(TAG, "Send error");
-        }
-    }
-}
-
-static void button1_event_cb(lv_event_t *event)
-{
-    if (event->code == LV_EVENT_VALUE_CHANGED)
-    {
-        ESP_LOGI(TAG, "Button 1 value changed");
-        // 在这里执行其他操作或触发其他事件
-                // 在按钮值改变时发送ESP-NOW消息
-        char send_buf[] = "C1";
-        if (esp_now_send(target_mac, (uint8_t *)send_buf, sizeof(send_buf)) != ESP_OK)
-        {
-            ESP_LOGE(TAG, "Send error");
-        }
-    }
-}
-*/
-
-/*
-static bool is_alternate_mode = false;
-static int message_counter = 0;  // 计数器变量，表示当前应该发送的消息序号
-
-static void button4_event_cb(lv_event_t *event) {
-    if (event->code == LV_EVENT_VALUE_CHANGED) {
-        ESP_LOGI(TAG, "Button 3 value changed");
-        // 在这里执行其他操作或触发其他事件
-
-        // 根据布尔变量发送不同的消息
-        char send_buf[3];
-        if (is_alternate_mode) {
-            snprintf(send_buf, sizeof(send_buf), "A2");
-        } else {
-            snprintf(send_buf, sizeof(send_buf), "A1");
-        }
-
-        if (esp_now_send(target_mac, (uint8_t *)send_buf, sizeof(send_buf)) != ESP_OK) {
-            ESP_LOGE(TAG, "Send error");
-        }
-
-        // 切换布尔变量
-        is_alternate_mode = !is_alternate_mode;
-    }
-}
 
 
-static void button2_event_cb(lv_event_t *event) {
-    if (event->code == LV_EVENT_VALUE_CHANGED) {
-        ESP_LOGI(TAG, "Button 2 value changed");
-
-        // 在这里执行其他操作或触发其他事件
-
-        // 根据计数器变量发送不同的消息
-        char send_buf[3];
-        if (message_counter % 2 == 0) {
-            snprintf(send_buf, sizeof(send_buf), "B1");
-        } else {
-            snprintf(send_buf, sizeof(send_buf), "B2");
-        }
-
-        if (esp_now_send(target_mac, (uint8_t *)send_buf, sizeof(send_buf)) != ESP_OK) {
-            ESP_LOGE(TAG, "Send error");
-        }
-
-        // 增加计数器变量
-        message_counter++;
-        if (message_counter > 2) {
-            message_counter = 1;
-        }
-    }
-}
-*/
 typedef enum
 {
     MODE_A1,
@@ -152,7 +53,8 @@ static void button_event_cb(lv_event_t *event, MessageMode mode, const char *mes
         ESP_LOGI(TAG, "Button value changed");
 
         char send_buf[3];
-        snprintf(send_buf, sizeof(send_buf), (message_counters[mode] % 2 == 0) ? message1 : message2);
+        //snprintf(send_buf, sizeof(send_buf), (message_counters[mode] % 2 == 0) ? message1 : message2);
+        snprintf(send_buf, sizeof(send_buf), "%s", (message_counters[mode] % 2 == 0) ? message1 : message2);
 
         if (esp_now_send(target_mac, (uint8_t *)send_buf, sizeof(send_buf)) != ESP_OK)
         {
@@ -165,7 +67,6 @@ static void button_event_cb(lv_event_t *event, MessageMode mode, const char *mes
 }
 
 
-
 static void button1_event_cb(lv_event_t *event)
 {
     button_event_cb(event, MODE_C1, "C1", "C2");
@@ -176,49 +77,42 @@ static void button2_event_cb(lv_event_t *event)
     button_event_cb(event, MODE_B1, "B1", "B2");
 }
 
-
 static void button4_event_cb(lv_event_t *event)
 {
     button_event_cb(event, MODE_A1, "A1", "A2");
 }
 
 
-
-
-void ui_event_comp_Panel2_Button1(lv_event_t *e, lv_obj_t *cui_Button1, lv_obj_t **children)
+void ui_event_comp_Panel2_Button1(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t *target = lv_event_get_target(e);
-    
-    if (event_code == LV_EVENT_CLICKED)
-    {
-        _ui_checked_set_text_value(children[UI_COMP_PANEL2_BUTTON1_LABEL1], target, "ON", "OFF");
-    }
-}
-/*
-void ui_event_comp_Panel2_Button2(lv_event_t *e,lv_obj_t *cui_Button2, lv_obj_t **children)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t *target = lv_event_get_target(e);
-    if (event_code == LV_EVENT_CLICKED)
-    {
-        lv_obj_add_event_cb(cui_Button2, ui_event_comp_Panel2_Button2, LV_EVENT_CLICKED, children);
-        _ui_checked_set_text_value(children[UI_COMP_PANEL2_BUTTON2_LABEL3], target, "ON", "OFF");
+    lv_obj_t * target = lv_event_get_target(e);
+    lv_obj_t ** comp_Panel2 = lv_event_get_user_data(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_checked_set_text_value(comp_Panel2[UI_COMP_PANEL2_BUTTON1_LABEL1], target, "ON", "OFF");
     }
 }
 
-void ui_event_comp_Panel2_Button4(lv_event_t *e,lv_obj_t *cui_Button4, lv_obj_t **children)
+void ui_event_comp_Panel2_Button2(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t *target = lv_event_get_target(e);
-    
-    if (event_code == LV_EVENT_CLICKED)
-    {
-        lv_obj_add_event_cb(cui_Button4, ui_event_comp_Panel2_Button4, LV_EVENT_CLICKED, children);
-        _ui_checked_set_text_value(children[UI_COMP_PANEL2_BUTTON4_LABEL4], target, "ON", "OFF");
+    lv_obj_t * target = lv_event_get_target(e);
+    lv_obj_t ** comp_Panel2 = lv_event_get_user_data(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_checked_set_text_value(comp_Panel2[UI_COMP_PANEL2_BUTTON2_LABEL3], target, "ON", "OFF");
     }
 }
-*/
+
+void ui_event_comp_Panel2_Button4(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    lv_obj_t ** comp_Panel2 = lv_event_get_user_data(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_checked_set_text_value(comp_Panel2[UI_COMP_PANEL2_BUTTON4_LABEL4], target, "ON", "OFF");
+    }
+}
+
 void ui_event_comp_Panel2_Arc2(lv_event_t *e) // arc回调函数
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -331,8 +225,8 @@ lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
     lv_obj_add_event_cb(cui_Arc2, ui_event_comp_Panel2_Arc2, LV_EVENT_ALL, children);
 
     lv_obj_add_event_cb(cui_Button1, ui_event_comp_Panel2_Button1, LV_EVENT_CLICKED, children);
-    //lv_obj_add_event_cb(cui_Button2, ui_event_comp_Panel2_Button2, LV_EVENT_CLICKED, children);
-    //lv_obj_add_event_cb(cui_Button4, ui_event_comp_Panel2_Button4, LV_EVENT_CLICKED, children);
+   lv_obj_add_event_cb(cui_Button2, ui_event_comp_Panel2_Button2, LV_EVENT_CLICKED, children);
+   lv_obj_add_event_cb(cui_Button4, ui_event_comp_Panel2_Button4, LV_EVENT_ALL, children);
 
     ui_comp_Panel2_create_hook(cui_Panel2);
     return cui_Panel2;

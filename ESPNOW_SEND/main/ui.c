@@ -5,7 +5,7 @@
 
 #include "ui.h"
 #include "ui_helpers.h"
-
+//#include "ui_comp.h"
 ///////////////////// VARIABLES ////////////////////
 
 // SCREEN: ui_Screen1
@@ -14,14 +14,14 @@ lv_obj_t * ui_Screen1;
 lv_obj_t * ui_Panel2;
 //
 //void ui_event_Panel2_Button1(lv_event_t * e);
-lv_obj_t * ui_Label1;
+//lv_obj_t * ui_Label1;
 //void ui_event_Panel2_Button2(lv_event_t * e);
-lv_obj_t * ui_Label2;
+//lv_obj_t * ui_Label2;
 //void ui_event_Panel2_Button4(lv_event_t * e);
-lv_obj_t * ui_Label4;
+//lv_obj_t * ui_Label4;
 //
 lv_obj_t * ui____initial_actions0;
-
+//uint32_t LV_EVENT_GET_COMP_CHILD;
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
     #error "LV_COLOR_DEPTH should be 16bit to match SquareLine Studio's settings"
@@ -33,30 +33,7 @@ lv_obj_t * ui____initial_actions0;
 ///////////////////// ANIMATIONS ////////////////////
 
 ///////////////////// FUNCTIONS ////////////////////
-// void ui_event_Panel2_Button1(lv_event_t * e)
-// {
-//     lv_event_code_t event_code = lv_event_get_code(e);
-//     lv_obj_t * target = lv_event_get_target(e);
-//     if(event_code == LV_EVENT_CLICKED) {
-//         _ui_checked_set_text_value(ui_Label1, target, "ON	", "OFF");
-//     }
-// }
-// void ui_event_Panel2_Button2(lv_event_t * e)
-// {
-//     lv_event_code_t event_code = lv_event_get_code(e);
-//     lv_obj_t * target = lv_event_get_target(e);
-//     if(event_code == LV_EVENT_CLICKED) {
-//         _ui_checked_set_text_value(ui_Label3, target, "ON", "OFF");
-//     }
-// }
-// void ui_event_Panel2_Button4(lv_event_t * e)
-// {
-//     lv_event_code_t event_code = lv_event_get_code(e);
-//     lv_obj_t * target = lv_event_get_target(e);
-//     if(event_code == LV_EVENT_CLICKED) {
-//         _ui_checked_set_text_value(ui_Label4, target, "ON", "OFF");
-//     }
-// }
+
 ///////////////////// SCREENS ////////////////////
 
 void ui_init(void)

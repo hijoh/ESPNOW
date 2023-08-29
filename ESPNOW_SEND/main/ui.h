@@ -18,15 +18,21 @@ extern "C" {
 #include "ui_events.h"
 // SCREEN: ui_Screen1
 void ui_Screen1_screen_init(void);
+//
+//void get_component_child_event_cb(lv_event_t * e);
+//void del_component_child_event_cb(lv_event_t * e);
+//lv_obj_t * ui_comp_get_child(lv_obj_t * comp, uint32_t child_idx);
+//extern uint32_t LV_EVENT_GET_COMP_CHILD;
+//
 extern lv_obj_t * ui_Screen1;
 extern lv_obj_t * ui_Panel2;
 //
 //void ui_event_Panel2_Button1(lv_event_t * e);
-extern lv_obj_t * ui_Label1;
+//extern lv_obj_t * ui_Label1;
 //void ui_event_Panel2_Button2(lv_event_t * e);
-extern lv_obj_t * ui_Label3;
+//extern lv_obj_t * ui_Label3;
 //void ui_event_Panel2_Button4(lv_event_t * e);
-extern lv_obj_t * ui_Label4;
+//extern lv_obj_t * ui_Label4;
 //
 extern lv_obj_t * ui____initial_actions0;
 
