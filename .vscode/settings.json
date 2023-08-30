@@ -5,6 +5,7 @@
         "espnow_module.h": "c",
         "esp_now.h": "c",
         "lv_demo_music.h": "c",
-        "esp_netif.h": "c"
+        "esp_netif.h": "c",
+        "numbers": "c"
     }
 }
