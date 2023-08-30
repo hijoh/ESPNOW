@@ -29,7 +29,6 @@ static const char *TAG = "Button1_Callback";
 // static const char *TAG = "Panel2";
 // static uint8_t target_mac[ESP_NOW_ETH_ALEN] = {0x7C, 0xDF, 0xA1, 0xB8, 0xBE, 0xFC};
 
-
 typedef enum
 {
     MODE_A1,
@@ -53,7 +52,7 @@ static void button_event_cb(lv_event_t *event, MessageMode mode, const char *mes
         ESP_LOGI(TAG, "Button value changed");
 
         char send_buf[3];
-        //snprintf(send_buf, sizeof(send_buf), (message_counters[mode] % 2 == 0) ? message1 : message2);
+        // snprintf(send_buf, sizeof(send_buf), (message_counters[mode] % 2 == 0) ? message1 : message2);
         snprintf(send_buf, sizeof(send_buf), "%s", (message_counters[mode] % 2 == 0) ? message1 : message2);
 
         if (esp_now_send(target_mac, (uint8_t *)send_buf, sizeof(send_buf)) != ESP_OK)
@@ -65,7 +64,6 @@ static void button_event_cb(lv_event_t *event, MessageMode mode, const char *mes
         message_counters[mode]++;
     }
 }
-
 
 static void button1_event_cb(lv_event_t *event)
 {
@@ -82,33 +80,35 @@ static void button4_event_cb(lv_event_t *event)
     button_event_cb(event, MODE_A1, "A1", "A2");
 }
 
-
-void ui_event_comp_Panel2_Button1(lv_event_t * e)
+void ui_event_comp_Panel2_Button1(lv_event_t *e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    lv_obj_t ** comp_Panel2 = lv_event_get_user_data(e);
-    if(event_code == LV_EVENT_CLICKED) {
+    lv_obj_t *target = lv_event_get_target(e);
+    lv_obj_t **comp_Panel2 = lv_event_get_user_data(e);
+    if (event_code == LV_EVENT_CLICKED)
+    {
         _ui_checked_set_text_value(comp_Panel2[UI_COMP_PANEL2_BUTTON1_LABEL1], target, "ON", "OFF");
     }
 }
 
-void ui_event_comp_Panel2_Button2(lv_event_t * e)
+void ui_event_comp_Panel2_Button2(lv_event_t *e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    lv_obj_t ** comp_Panel2 = lv_event_get_user_data(e);
-    if(event_code == LV_EVENT_CLICKED) {
+    lv_obj_t *target = lv_event_get_target(e);
+    lv_obj_t **comp_Panel2 = lv_event_get_user_data(e);
+    if (event_code == LV_EVENT_CLICKED)
+    {
         _ui_checked_set_text_value(comp_Panel2[UI_COMP_PANEL2_BUTTON2_LABEL3], target, "ON", "OFF");
     }
 }
 
-void ui_event_comp_Panel2_Button4(lv_event_t * e)
+void ui_event_comp_Panel2_Button4(lv_event_t *e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    lv_obj_t ** comp_Panel2 = lv_event_get_user_data(e);
-    if(event_code == LV_EVENT_CLICKED) {
+    lv_obj_t *target = lv_event_get_target(e);
+    lv_obj_t **comp_Panel2 = lv_event_get_user_data(e);
+    if (event_code == LV_EVENT_CLICKED)
+    {
         _ui_checked_set_text_value(comp_Panel2[UI_COMP_PANEL2_BUTTON4_LABEL4], target, "ON", "OFF");
     }
 }
@@ -123,7 +123,6 @@ void ui_event_comp_Panel2_Arc2(lv_event_t *e) // arc回调函数
         _ui_arc_set_text_value(comp_Panel2[UI_COMP_PANEL2_ARC2_LABEL2], target, "", "%");
     }
 }
-
 
 // COMPONENT Panel2
 
@@ -154,8 +153,6 @@ lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
     lv_obj_set_align(cui_Label1, LV_ALIGN_CENTER);
     lv_label_set_text(cui_Label1, "OFF");
 
-     
-
     lv_obj_t *cui_Button2;
     cui_Button2 = lv_btn_create(cui_Panel2);
     lv_obj_set_width(cui_Button2, 100);
@@ -173,8 +170,6 @@ lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
     lv_obj_set_align(cui_Label3, LV_ALIGN_CENTER);
     lv_label_set_text(cui_Label3, "OFF");
 
-    
-
     lv_obj_t *cui_Button4;
     cui_Button4 = lv_btn_create(cui_Panel2);
     lv_obj_set_width(cui_Button4, 100);
@@ -191,8 +186,6 @@ lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
     lv_obj_set_height(cui_Label4, LV_SIZE_CONTENT); /// 1
     lv_obj_set_align(cui_Label4, LV_ALIGN_CENTER);
     lv_label_set_text(cui_Label4, "OFF");
-
-   
 
     lv_obj_t *cui_Arc2;
     cui_Arc2 = lv_arc_create(cui_Panel2);
@@ -225,8 +218,12 @@ lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
     lv_obj_add_event_cb(cui_Arc2, ui_event_comp_Panel2_Arc2, LV_EVENT_ALL, children);
 
     lv_obj_add_event_cb(cui_Button1, ui_event_comp_Panel2_Button1, LV_EVENT_CLICKED, children);
-   lv_obj_add_event_cb(cui_Button2, ui_event_comp_Panel2_Button2, LV_EVENT_CLICKED, children);
-   lv_obj_add_event_cb(cui_Button4, ui_event_comp_Panel2_Button4, LV_EVENT_ALL, children);
+    lv_obj_add_event_cb(cui_Button2, ui_event_comp_Panel2_Button2, LV_EVENT_CLICKED, children);
+    lv_obj_add_event_cb(cui_Button4, ui_event_comp_Panel2_Button4, LV_EVENT_ALL, children);
+
+    lv_obj_add_event_cb(cui_Button1, button1_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+    lv_obj_add_event_cb(cui_Button2, button1_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+    lv_obj_add_event_cb(cui_Button4, button1_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
 
     ui_comp_Panel2_create_hook(cui_Panel2);
     return cui_Panel2;
