@@ -18,21 +18,16 @@ extern "C" {
 #define UI_COMP_PANEL2_BUTTON1_LABEL1 1
 #define UI_COMP_PANEL2_BUTTON2 2
 #define UI_COMP_PANEL2_BUTTON2_LABEL3 2
-#define UI_COMP_PANEL2_BUTTON4 4
-#define UI_COMP_PANEL2_BUTTON4_LABEL4 4
-#define UI_COMP_PANEL2_ARC2 5
-#define UI_COMP_PANEL2_ARC2_LABEL2 6
-#define _UI_COMP_PANEL2_NUM 7
-
-
+#define UI_COMP_PANEL2_BUTTON4 3
+#define UI_COMP_PANEL2_BUTTON4_LABEL4 3
+#define UI_COMP_PANEL2_ARC2 4
+#define UI_COMP_PANEL2_ARC2_LABEL2 4
+#define _UI_COMP_PANEL2_NUM 5
 
 
 lv_obj_t * ui_Panel2_create(lv_obj_t * comp_parent);
 void ui_event_comp_Panel2_Arc2(lv_event_t * e);
 
-void ui_event_comp_Panel2_Button1(lv_event_t *e);
-// void ui_event_comp_Panel2_Button2(lv_event_t *e);
-// void ui_event_comp_Panel2_Button4(lv_event_t *e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

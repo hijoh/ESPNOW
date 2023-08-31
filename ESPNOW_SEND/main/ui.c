@@ -5,15 +5,23 @@
 
 #include "ui.h"
 #include "ui_helpers.h"
-
+//#include "ui_comp.h"
 ///////////////////// VARIABLES ////////////////////
 
 // SCREEN: ui_Screen1
 void ui_Screen1_screen_init(void);
 lv_obj_t * ui_Screen1;
 lv_obj_t * ui_Panel2;
+//
+//void ui_event_Panel2_Button1(lv_event_t * e);
+//lv_obj_t * ui_Label1;
+//void ui_event_Panel2_Button2(lv_event_t * e);
+//lv_obj_t * ui_Label2;
+//void ui_event_Panel2_Button4(lv_event_t * e);
+//lv_obj_t * ui_Label4;
+//
 lv_obj_t * ui____initial_actions0;
-
+//uint32_t LV_EVENT_GET_COMP_CHILD;
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
     #error "LV_COLOR_DEPTH should be 16bit to match SquareLine Studio's settings"
