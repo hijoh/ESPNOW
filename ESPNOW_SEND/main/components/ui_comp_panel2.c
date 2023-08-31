@@ -167,7 +167,7 @@ lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
     lv_obj_set_align(cui_Button2, LV_ALIGN_CENTER);
     lv_obj_add_flag(cui_Button2, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS); /// Flags
     lv_obj_clear_flag(cui_Button2, LV_OBJ_FLAG_SCROLLABLE);                            /// Flags
-    lv_obj_add_event_cb(cui_Button2, button1_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+    lv_obj_add_event_cb(cui_Button2, button2_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
 
     lv_obj_t *cui_Label3;
     cui_Label3 = lv_label_create(cui_Button2);
@@ -185,7 +185,7 @@ lv_obj_t *ui_Panel2_create(lv_obj_t *comp_parent)
     lv_obj_set_align(cui_Button4, LV_ALIGN_CENTER);
     lv_obj_add_flag(cui_Button4, LV_OBJ_FLAG_CHECKABLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS); /// Flags
     lv_obj_clear_flag(cui_Button4, LV_OBJ_FLAG_SCROLLABLE);                            /// Flags
-    lv_obj_add_event_cb(cui_Button4, button1_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+    lv_obj_add_event_cb(cui_Button4, button4_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
 
     lv_obj_t *cui_Label4;
     cui_Label4 = lv_label_create(cui_Button4);
