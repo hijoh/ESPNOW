@@ -23,12 +23,16 @@
 #include "esp_log.h"
 #include "espnow_example.h"
 #include "nvs_flash.h"
+#include "driver/gpio.h"
 
 
 
 
 void app_main(void)
 {
+    gpio_pad_select_gpio(GPIO_NUM_2);
+    gpio_set_direction(GPIO_NUM_2, GPIO_MODE_OUTPUT);
+    gpio_set_level(GPIO_NUM_2, 1);
 
    xTaskCreatePinnedToCore(gui_task, "gui task", 1024 * 4, NULL, 15, NULL, 1);
     // Initialize NVS
